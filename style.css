@@ -1,0 +1,417 @@
+/* ||Fonts */
+@font-face {
+    font-family: 'GFS Didot';
+    src: url(fonts/GFS_Didot/GFSDidot.otf);
+    font-style: normal;
+    font-weight: normal;
+}
+
+@font-face {
+    font-family: 'GFS Didot';
+    src: url(fonts/GFS_Didot/GFSDidotBold.otf);
+    font-style: normal;
+    font-weight: bold;
+}
+
+/*Keeping the same font name, while changing the source and font properties, allows for cleaner CSS, as you don't need to specify the font-family of each element.*/
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap');
+
+/* || GENERAL STYLES */
+html {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 100;
+}
+
+body {
+    margin: 0; /*so the navbar doesn't have space around it*/
+}
+
+header h1{
+    font-family: 'GFS Didot';
+    font-weight: bold;
+    font-size: 4rem;
+    color: #5b6585;
+    /* word-spacing: 100vw; */ /*  puts each word on a different line */
+    text-align:justify;
+}
+
+/* .header-last-word {
+    text-align: end;
+} */
+
+title {
+    text-transform: capitalize;
+}
+
+/* || UTILITY CLASSES(?) */
+.nav-bar /* nav */ ul li {
+    list-style: none;
+    display: inline-block;
+    font-weight: bold;
+    font-size: 1.2rem;
+    color: white;
+    background-color: #5b6585;
+    margin-right: 2rem;
+}
+
+.nav-item, .logo a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.nav-item:visited {
+    color: inherit
+}
+
+.nav-item:focus {
+    color: inherit;
+}
+
+.nav-item:hover {
+    text-decoration: underline;
+    text-underline-offset: 0.1em;
+}
+
+.nav-item:active {
+    color: inherit;
+}
+
+
+.nav-bar .logo a {
+    margin-right: auto;
+    margin-left: 2rem;
+}
+
+header {
+    display: inline-block;
+}
+
+header h1 p {
+    margin: 0;
+}
+
+header p:last-child {
+    text-align: end;
+}
+
+/* caption {
+    font-family: 'GFS Didot bold';
+} Keep a change like this in mind for the documentation*/
+
+/* header {
+    grid-area: header;
+}
+
+.nav-bar {
+    grid-area: nav;
+}
+
+table {
+    grid-area: trip-table;
+}
+
+footer {
+    grid-area: footer;
+}
+ */
+/* || GRID LAYOUT */
+
+.grid-container {
+    display: grid;
+    gap: 20px;
+/*     grid-template-areas: 
+        "header header"
+        "nav nav"
+        "trip-table"; */
+    grid-template-columns: repeat(4, 1fr);
+    grid-auto-rows: minmax(100px, auto);
+    justify-items: center; /*centers the table*/
+}
+
+header {
+    grid-column: 2 / 4;
+    grid-row: 2;
+}
+
+.nav-bar {
+    grid-column: 1 / 5;
+}
+
+table {
+    grid-column: 2 / 4;
+    grid-row: 3;
+}
+
+/* || SITEWIDE */
+
+.nav-bar {
+    display: flex;
+    height: 4rem;
+    width: 100%;
+    background-color: #5b6585;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.testflex { /* solution with another flex container. Not the best choise */
+    display: flex;
+    width: 100%;
+    align-items: center;
+}
+
+.push {
+    margin-left: auto;
+}
+
+.push .nav-item { /* login button */
+    background-color: white;
+    color: #5b6585;
+    padding: 0.5rem 0.7rem;
+    margin-right: 1.8rem; /* to compensate for the logo's margin */ 
+    border-radius: 1rem;
+    font-weight: normal;
+    font-size: 1.1rem;
+    text-decoration: none;
+}
+
+.push .nav-item:hover {
+    color: #9ebbb4;
+    
+}
+
+.logo a {
+    font-family: 'GFS Didot';
+    font-weight: bold;
+    font-size: 2rem;
+    background-color: white;
+    border-radius: 0.1rem;
+    color: #5b6585;
+    padding: 0px 3px 0px 3px;
+    box-shadow: 0.3rem 0.3rem 0 #9ebbb4;
+}
+
+.logo a:hover {
+    color:#9ebbb4;
+    cursor: pointer;
+}
+
+
+/* || TABLE STYLING */
+table {
+    table-layout: fixed;
+    border-collapse: collapse;
+    font-size: 0.9em; /*makes the text sligthly smaller than that of the rest of the document*/
+    margin: 25px 0;
+    min-width: 400px;
+    max-width: 600px; /*to stop it from becoming too large because of grid*/
+    border-radius: 5px 5px 0 0;
+    /* overflow: hidden; */
+}
+
+@-moz-document url-prefix(){ 
+    table {
+        overflow: hidden; /*Adding back the overflow only for Firefox to make the rounded corners of the thead work*/
+    }
+}
+
+
+/* th { this was most likely only affecting the text because I had given the colour and font properties to the table row of the head. Putting the below code in thead tr fixed the issue.
+    position: sticky;
+    top: 0;
+} */
+
+/*Chrome border-radius fix*/
+thead th:first-of-type {
+    border-radius: 5px 0px 0 0;
+}
+
+thead th:last-of-type {
+    border-radius: 0px 5px 0 0;
+}
+
+/* th {
+    position: sticky;
+    top: 0;
+} */
+
+thead tr {
+    background-color: #5b6585;
+    color: white;
+    text-align: left;
+    font-weight: bold;
+    position: sticky;
+    top: 0;
+}
+
+caption {
+    font-family: 'GFS Didot';
+    font-weight: bold;
+    background-color: #5b6585;
+    color: white;
+    caption-side: bottom;
+    padding: 3px 0px 12px 0px;
+    border-radius: 0px 0px 5px 5px;
+}
+
+caption::first-letter {
+    background-color: white;
+    border-radius: 0.5px;
+    color: #5b6585;
+    padding: 0px 1px 0px 1px;
+    margin-right: 3px;
+    box-shadow: 2px 2px 0 #9ebbb4;
+}
+
+th, td {
+    padding: 12px 15px;
+}
+
+/* vertical border */
+/* tbody td {
+    border-right: 1px solid #dddddd;
+} */
+
+tbody tr {
+    border-bottom: 1px solid #dddddd;
+}
+
+tbody tr:nth-of-type(even) {
+    background-color: #f3f3f3;
+}
+
+tbody tr:last-of-type {
+    border-bottom: 2px solid #5b6585;
+}
+
+thead th:nth-child(3) {
+    width: 20%;
+}
+
+/* 
+tbody tr:last-of-type:hover {
+    font-weight: bold;
+  } */
+  
+  /*border and colour on hover*/
+tbody tr:hover {
+    /* border-left: 2px solid #5b6585; this would appear before the start of the row,so I fixed it with a box-shadow*/
+    color: #5b6585;
+    background-color: #cecfd9;
+    box-shadow: /* 0px 2px 2px 0px #5b6585, */ inset 2px 0 0 0 #5b6585;
+  }
+
+/* || For the WA one */
+@font-face {
+    font-family: "Exquinnsite";
+    src: url(/fonts/Exquinnsite-Regular.ttf) format('ttf');
+    font-style: normal;
+    font-weight: normal;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@700&display=swap');
+
+.wa-header h1 {
+    font-family: 'Merriweather', serif;
+    font-style: normal;
+    color: #fae2c6;
+    text-align: center;
+    text-shadow: -5px 5px 0 #444342, -1px 4px 0 #444342, -2px 5px 0 #444342, -3px 3px 0 #444342, -4px 4px 0 #444342;
+}
+
+.wa-header {
+/*     border: 3px solid #444342; */
+    border-radius: 10px;
+    display: flex; /* centers the logo */
+    align-items: center;
+    flex-direction: column;
+}
+
+h1 abbr {
+    text-decoration: none;
+}
+
+.wa-logo {
+    max-height: 200px;
+}
+
+.wa-caption {
+    font-family: 'GFS Didot';
+    font-weight: bold;
+    background-color: #d74826;
+    color: white;
+    caption-side: bottom;
+    padding: 3px 0px 12px 0px;
+    border-radius: 0px 0px 5px 5px;
+}
+
+.wa-caption::first-letter {
+    font-weight: bold;    
+    background-color: white;
+    border-radius: 0.5px;
+    color: #d74826;
+    padding: 0px 3px 0px 3px;
+    margin-right: 5px;
+    box-shadow: 1px 1px 0 #d74826, 3px 3px 0 #fae2c6 ;
+}
+/* #fae2c6 #fbf3d3*/
+
+.wa-nav-bar, .wa-nav-bar nav ul li {
+    background-color: #d74826;
+    background-image: url(images/Pattern.png);
+    background-size: 300px;
+}
+.wa-nav-bar nav {
+    justify-content: space-between;
+    align-items: center;
+}
+
+.wa-table thead th {
+    background-image: url(images/Pattern.png);
+    /* background-color: #d74826; */
+    background-size: cover;
+}
+
+.wa-table tbody th {
+    background-image: url(images/Pattern.png);
+    background-size: 145px;
+    color: white;
+}
+
+.wa-table {
+    font-size: 1rem;
+}
+
+
+.wa-table tbody tr:last-of-type {
+    border-bottom: 2px solid #d74826;
+}
+
+.wa-table tbody tr:hover {
+    color: #d74826;
+    background-color: #d9cece;
+    box-shadow: /* 0px 2px 2px 0px #5b6585, */ inset 2px 0 0 0 #d74826;
+}
+
+.wa-table tbody tr:nth-of-type(2) {
+    border-bottom: 2px solid #d74826;
+}
+
+.wa-bg {
+    background-image: url("images/Pattern.png");
+    height: 7rem;
+    width: 30rem;
+    min-height: 20px;
+    /* height: fit-content; */
+    border-radius: 10px;
+    background-size: cover;
+    margin-top: 1rem;
+    display: flex; /* actually centers the text */
+    align-items: center;
+    justify-content: center;
+}
+
+td abbr {
+    text-decoration: none;
+    color: #d74826;
+}
